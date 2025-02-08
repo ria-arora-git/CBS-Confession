@@ -15,7 +15,11 @@ export async function getPosts() {
 }
 
 export async function createPost(content) {
-  const date = new Date().toDateString;
+  if (!content) {
+    throw new Error('Content cannot be null or undefined');
+  }
+
+  const date = new Date().toDateString(); 
   
   try {
     const newPost = await prisma.confessions.create({
