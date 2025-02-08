@@ -13,8 +13,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Confessions{
-  cid String @id @default(cuid())
+model Confessions {
+  cid     String @id @default(cuid())
   content String
-  date String
+  date    String
+  like    Int    @default(0)
+  love    Int    @default(0)
+  laugh   Int    @default(0)
 }
