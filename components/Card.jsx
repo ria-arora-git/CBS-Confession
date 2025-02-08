@@ -1,25 +1,21 @@
 'use client'
 
 import React, { useState } from 'react';
+import { updateReactions } from '@/server/actions';
 
-function Card({ content, date }) {
+function Card({ cid, content, date, initialReactions }) {
   const [showOptions, setShowOptions] = useState(false);
-  const [reports, setReports] = useState(0);
-  const [emojiReactions, setEmojiReactions] = useState({ like: 0, love: 0, laugh: 0 });
+  const [emojiReactions, setEmojiReactions] = useState(initialReactions);
 
-  // function handleReport() {
-  //   setReports(reports + 1);
-  //   if (reports + 1 >= 5) {
-  //     alert("This card has been deleted due to multiple reports.");
-  //   }
-  // }
-
-  // function handleReaction(type) {
-  //   setEmojiReactions({ ...emojiReactions, [type]: emojiReactions[type] + 1 });
-  // }
-
-  if (reports >= 5) {
-    return null; // Card is deleted
+  async function handleReaction(type) {
+    try {
+      const response = await updateReactions(cid, type);
+      if (response.success) {
+        setEmojiReactions({ ...emojiReactions, [type]: emojiReactions[type] + 1 });
+      }
+    } catch (error) {
+      console.error(`Error updating ${type} reaction:`, error);
+    }
   }
 
   return (
@@ -27,11 +23,6 @@ function Card({ content, date }) {
       <div className="absolute top-2 right-2 cursor-pointer" onClick={() => setShowOptions(!showOptions)}>
         &#x22EE; {/* Unicode for vertical ellipsis */}
       </div>
-      {showOptions && (
-        <div className="absolute top-8 right-2 bg-white p-2 rounded shadow-lg">
-          <button onClick={handleReport} className="block w-full text-left px-2 py-1 text-black">Report</button>
-        </div>
-      )}
       <p>
         {content}
       </p>
@@ -41,7 +32,7 @@ function Card({ content, date }) {
             {`Posted on ${date}`}
           </p>
         </div>
-        {/* <div className="flex justify-start gap-2">
+        <div className="flex justify-start gap-2">
           <button onClick={() => handleReaction('like')} className="flex items-center text-lg gap-1">
             👍  <span>{emojiReactions.like}</span>
           </button>
@@ -51,7 +42,7 @@ function Card({ content, date }) {
           <button onClick={() => handleReaction('laugh')} className="flex items-center text-lg gap-1">
             😂 <span>{emojiReactions.laugh}</span>
           </button>
-        </div> */}
+        </div>
       </div>
     </div>
   );
