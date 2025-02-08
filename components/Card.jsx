@@ -7,16 +7,16 @@ function Card({ content, date }) {
   const [reports, setReports] = useState(0);
   const [emojiReactions, setEmojiReactions] = useState({ like: 0, love: 0, laugh: 0 });
 
-  function handleReport() {
-    setReports(reports + 1);
-    if (reports + 1 >= 5) {
-      alert("This card has been deleted due to multiple reports.");
-    }
-  }
+  // function handleReport() {
+  //   setReports(reports + 1);
+  //   if (reports + 1 >= 5) {
+  //     alert("This card has been deleted due to multiple reports.");
+  //   }
+  // }
 
-  function handleReaction(type) {
-    setEmojiReactions({ ...emojiReactions, [type]: emojiReactions[type] + 1 });
-  }
+  // function handleReaction(type) {
+  //   setEmojiReactions({ ...emojiReactions, [type]: emojiReactions[type] + 1 });
+  // }
 
   if (reports >= 5) {
     return null; // Card is deleted
@@ -41,7 +41,7 @@ function Card({ content, date }) {
             {`Posted on ${date}`}
           </p>
         </div>
-        <div className="flex justify-start gap-2">
+        {/* <div className="flex justify-start gap-2">
           <button onClick={() => handleReaction('like')} className="flex items-center text-lg gap-1">
             👍  <span>{emojiReactions.like}</span>
           </button>
@@ -51,7 +51,7 @@ function Card({ content, date }) {
           <button onClick={() => handleReaction('laugh')} className="flex items-center text-lg gap-1">
             😂 <span>{emojiReactions.laugh}</span>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
