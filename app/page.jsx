@@ -4,6 +4,8 @@ import Link from 'next/link';
 import React from 'react';
 import Head from 'next/head';
 
+export const dynamic = 'force-dynamic'
+
 async function Page() {
   const posts = (await getPosts()).reverse(); 
 
