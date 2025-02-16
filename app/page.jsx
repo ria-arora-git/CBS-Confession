@@ -25,7 +25,7 @@ async function Page() {
             <h1 className='text-5xl font-bold'>CBS Confessions</h1>
             <p className='text-xl mt-2'>Safe space for your daily vents</p>
           </header>
-          <div className='flex-2 overflow-y-auto w-2/3 p-4 flex flex-col items-center scrollbar-hide mt-6'>
+          <div className='h-[75vh] flex-2 overflow-y-auto w-2/3 p-4 flex flex-col items-center scrollbar-hide mt-6'>
             {formattedPosts.map((post, index) => (
               <Card
                 key={index}
