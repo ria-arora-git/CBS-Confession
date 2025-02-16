@@ -7,6 +7,9 @@ function Card({ cid, content, date, initialReactions }) {
   const [showOptions, setShowOptions] = useState(false);
   const [emojiReactions, setEmojiReactions] = useState(initialReactions);
 
+
+  const formattedDate = new Date(date).toISOString().split('T')[0];
+
   async function handleReaction(type) {
     try {
       const response = await updateReactions(cid, type);
@@ -23,13 +26,11 @@ function Card({ cid, content, date, initialReactions }) {
       <div className="absolute top-2 right-2 cursor-pointer" onClick={() => setShowOptions(!showOptions)}>
         &#x22EE; {/* Unicode for vertical ellipsis */}
       </div>
-      <p>
-        {content}
-      </p>
+      <p>{content}</p>
       <div className='flex justify-between'>
         <div>
           <p className='text-white/60 flex right-2 items-start'>
-            {`Posted on ${date}`}
+            {`Posted on ${formattedDate}`}
           </p>
         </div>
         <div className="flex justify-start gap-2">

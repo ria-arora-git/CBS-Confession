@@ -4,10 +4,14 @@ import Link from 'next/link';
 import React from 'react';
 import Head from 'next/head';
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
 async function Page() {
-  const posts = (await getPosts()).reverse(); 
+  const posts = await getPosts();
+  const formattedPosts = posts.map(post => ({
+    ...post,
+    date: new Date(post.date).toLocaleDateString(), 
+  }));
 
   return (
     <>
@@ -17,12 +21,12 @@ async function Page() {
       </Head>
       <div className='h-[100vh] bg-gradient-to-b ' style={{ backgroundImage: "url('/pink.avif')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className='w-screen h-[90vh] flex flex-col items-center bg-gradient-to-b'>
-          <header className='w-full h-[45vh] shadow-zinc-100 shadow-md flex justify-center items-center px-12 flex-col'>
+          <header className='w-full h-[15vh] shadow-zinc-100 shadow-md flex justify-center items-center px-12 flex-col'>
             <h1 className='text-5xl font-bold'>CBS Confessions</h1>
             <p className='text-xl mt-2'>Safe space for your daily vents</p>
           </header>
           <div className='flex-2 overflow-y-auto w-2/3 p-4 flex flex-col items-center scrollbar-hide mt-6'>
-            {posts.map((post, index) => (
+            {formattedPosts.map((post, index) => (
               <Card
                 key={index}
                 cid={post.cid}

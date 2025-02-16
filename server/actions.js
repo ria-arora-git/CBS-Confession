@@ -6,20 +6,27 @@ const prisma = new PrismaClient();
 
 export async function getPosts() {
   try {
-    const posts = await prisma.confessions.findMany();
-    return posts; 
+    const posts = await prisma.confessions.findMany({
+      orderBy: {
+        date: 'desc',
+      },
+    });
+    return posts;
   } catch (error) {
     console.error("Error fetching posts:", error);
     throw error;
   }
 }
 
+
+
+
 export async function createPost(content) {
   if (!content) {
     throw new Error('Content cannot be null or undefined');
   }
 
-  const date = new Date().toDateString(); 
+  const date = new Date().toISOString(); 
   
   try {
     const newPost = await prisma.confessions.create({
@@ -40,6 +47,7 @@ export async function createPost(content) {
     throw error;
   }
 }
+
 
 export async function updateReactions(cid, type) {
   const validTypes = ['like', 'love', 'laugh'];
