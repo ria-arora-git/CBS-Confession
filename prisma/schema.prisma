@@ -20,6 +20,7 @@ model Confessions {
   like    Int     @default(0)
   love    Int     @default(0)
   laugh   Int     @default(0)
+  cry     Int     @default(0)
 }
 
 

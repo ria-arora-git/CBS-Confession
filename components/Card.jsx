@@ -42,6 +42,9 @@ function Card({ cid, content, date, initialReactions }) {
           <button onClick={() => handleReaction('laugh')} className="flex items-center text-lg gap-1">
             😂 <span>{emojiReactions.laugh}</span>
           </button>
+          <button onClick={() => handleReaction('cry')} className="flex items-center text-lg gap-1">
+          😭 <span>{emojiReactions.cry}</span>
+          </button>
         </div>
       </div>
     </div>

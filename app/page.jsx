@@ -32,7 +32,7 @@ async function Page() {
                 cid={post.cid}
                 content={post.content}
                 date={post.date}
-                initialReactions={{ like: post.like, love: post.love, laugh: post.laugh }}
+                initialReactions={{ like: post.like, love: post.love, laugh: post.laugh, cry:post.cry }}
               />
             ))}
           </div>

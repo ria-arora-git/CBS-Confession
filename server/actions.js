@@ -36,6 +36,7 @@ export async function createPost(content) {
         like: 0,
         love: 0,
         laugh: 0,
+        cry: 0,
       },
     });
     return {
@@ -50,7 +51,7 @@ export async function createPost(content) {
 
 
 export async function updateReactions(cid, type) {
-  const validTypes = ['like', 'love', 'laugh'];
+  const validTypes = ['like', 'love', 'laugh','cry'];
 
   if (!validTypes.includes(type)) {
     console.error(`Invalid reaction type: ${type}`);
