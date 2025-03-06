@@ -32,7 +32,7 @@ async function Page() {
           <header className='w-full lg:h-[15vh] md:h-[15vh] h-[20vh] shadow-zinc-100 shadow-md flex justify-center items-center px-12 gap-1 flex-col'>
             <div className='flex flex-col justify-center items-center '>
               <h1 className='text-4xl font-bold sm:text-4xl md:text-5xl lg:text-5xl'>CBS Confessions</h1>
-              <p className='text-xl mt-2'>Safe space for your daily vents</p>
+              <p className='text-lg md:text-xl lg:text-xl mt-2'>Safe space for your daily vents</p>
             </div>
             <div className=' gap-8 justify-end items-center lg:absolute lg:right-10 md:absolute md:right-10 hidden md:flex lg:flex'>
               <SignedOut>
