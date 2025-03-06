@@ -3,6 +3,14 @@ import { getPosts } from '@/server/actions';
 import Link from 'next/link';
 import React from 'react';
 import Head from 'next/head';
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 
 export const dynamic = 'force-dynamic';
 
@@ -21,9 +29,20 @@ async function Page() {
       </Head>
       <div className='h-[100vh] bg-gradient-to-b ' style={{ backgroundImage: "url('/pink.avif')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className='w-screen h-[90vh] flex flex-col items-center bg-gradient-to-b'>
-          <header className='w-full lg:h-[15vh] h-[12vh] shadow-zinc-100 shadow-md flex justify-center items-center px-12 flex-col'>
-            <h1 className='text-5xl font-bold'>CBS Confessions</h1>
-            <p className='text-xl mt-2'>Safe space for your daily vents</p>
+          <header className='w-full lg:h-[15vh] h-[12vh] shadow-zinc-100 shadow-md flex justify-center items-center px-12 gap-40'>
+            <div className='flex flex-col justify-center items-center absolute'>
+              <h1 className='text-5xl font-bold'>CBS Confessions</h1>
+              <p className='text-xl mt-2'>Safe space for your daily vents</p>
+            </div>
+            <div className='flex gap-8 justify-end items-center absolute right-10'>
+              <SignedOut>
+                <SignInButton />
+                <SignUpButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
           </header>
           <div className='w-screen h-[75vh] flex-2 overflow-y-auto lg:w-2/3 p-4 flex flex-col items-center scrollbar-hide mt-6'>
             {formattedPosts.map((post, index) => (
