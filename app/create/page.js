@@ -26,9 +26,9 @@ function Page() {
     }
 
     return (
-        <div className='w-screen h-screen flex justify-center items-center' style={{ backgroundImage: "url('/R-1.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            <div className='w-3/5 h-4/5 border rounded-2xl justify-center items-center flex p-10 flex-col mt-10 bg-white bg-opacity-10'>
-                <div className='text-5xl'>
+        <div className='w-screen md:h-screen lg:h-screen h-[100vh] flex justify-center items-center' style={{ backgroundImage: "url('/R-1.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <div className='w-4/5 lg:w-3/5 md:h-4/5 lg:h-4/5 h-3/5 border rounded-2xl justify-center items-center flex p-6 md:p-10 lg:p-10 flex-col lg:mt-10 md:mt-10 bg-white bg-opacity-10'>
+                <div className='md:text-5xl lg:text-5xl text-3xl font-bold text-white text-center'>
                     <h1 className='font-bold text-white'>Write a confession</h1>
                 </div>
                 <textarea onChange={(e) => setContent(e.target.value)} id="confession" className='flex-1 w-full h-full text-white border bg-transparent outline-none'></textarea>
